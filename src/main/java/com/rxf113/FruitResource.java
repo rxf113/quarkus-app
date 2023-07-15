@@ -38,4 +38,11 @@ public class FruitResource {
         return Response.status(Status.CREATED).entity(fruit).build();
     }
 
+    @GET
+    @Path("/fall")
+    public Fruit fruitByName(){
+        List<Fruit> fall = fruitRepository.findNamesBySeason("fall");
+        return fall.get(0);
+    }
+
 }
