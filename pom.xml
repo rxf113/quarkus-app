@@ -62,7 +62,7 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-jdbc-h2</artifactId>
+      <artifactId>quarkus-spring-web</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -73,8 +73,12 @@
       <artifactId>quarkus-spring-web</artifactId>
     </dependency>
     <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-spring-web</artifactId>
+      <artifactId>quarkus-jdbc-mysql</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
