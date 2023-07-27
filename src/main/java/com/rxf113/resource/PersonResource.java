@@ -1,8 +1,12 @@
 package com.rxf113.resource;
 
 import com.rxf113.model.Cat;
+import com.rxf113.model.Person;
 import com.rxf113.repository.PersonRepository;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.common.WithSession;
+import io.quarkus.logging.Log;
+import io.smallrye.mutiny.Uni;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -21,8 +25,13 @@ public class PersonResource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response hello(@PathParam("id") String id) {
-        return Response.status(Status.OK).entity(cusRepository.getPersonFullInfoById(id)).build();
+    @WithSession
+    public Uni<Response> hello(@PathParam("id") String id) {
+        return cusRepository.getPersonFullInfoById(id).onItem()
+                .transform(it -> Response.status(Status.OK).entity(it).build())
+                .onFailure().invoke(throwable -> {
+                    Log.error("error: ", throwable);
+                });
     }
 
     @PUT

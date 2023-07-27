@@ -1,0 +1,18 @@
+quarkus:
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    sql-load-script: import-mysql.sql
+
+  test:
+    continuous-testing: disabled
+
+  datasource:
+    db-kind: mysql
+    username: root
+    password: 1131310577
+    reactive.url: 'jdbc:mysql://127.0.0.1:3307/quarkus?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8'
+    jdbc:
+      max-size: 20
+
+greeting: Hello y'all!
